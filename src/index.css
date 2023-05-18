@@ -1,0 +1,36 @@
+@tailwind base;
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ba04b7;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #ba04b7;
+    border: 1px solid #fff;
+    border-radius: 20px;
+}
+
+body {
+    background-color: #0f051d;
+}
+html{
+    scroll-behavior: smooth
+
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.hover-gradient {
+    @apply hover:bg-gradient-purple hover:bg-clip-text hover:text-transparent hover:transition-all hover:duration-500
+}
