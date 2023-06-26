@@ -5,26 +5,29 @@ import DOMPurify from "dompurify";
 import Loader from "../assets/Loader.gif";
 
 export default function Coins() {
+  // Getting the CoinName from the URL. 
   const { coinid } = useParams();
   const navigate = useNavigate();
-  const [coin, setcoin] = useState([]);
+  const [coin, setCoin] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Coingecko Api
   const api = `https://api.coingecko.com/api/v3/coins/${coinid.toLowerCase()}`;
 
   useEffect(() => {
     const fetchcoin = async () => {
       try {
+        // If The data is fetched and response is ok than the data will be shown.
         const response = await fetch(api);
         if (!response.ok) {
           throw new Error("Error!");
         }
         const result = await response.json();
-        setcoin(result);
+        setCoin(result);
         setLoading(false);
-        console.log(result);
       } catch (error) {
         alert("This Coin Details Is Not Available");
+        // User will be navigated to the home page #market section.
         navigate("/#market");
       }
     };
@@ -32,9 +35,10 @@ export default function Coins() {
   }, [api, navigate]);
 
   useEffect(() => {
+    // If User Leaves the page than the user will be redirected to the home page market section preventing the default behaviour.
     const handleBeforeUnload = (event) => {
-      navigate("/#market");
       event.preventDefault();
+      navigate("/#market");
       return (event.returnValue = "");
     };
 
@@ -46,6 +50,7 @@ export default function Coins() {
   }, [navigate]);
 
   useEffect(() => {
+    // If User Click Any Link the Navbar than the user will be redirected to that corresponding section in the home page.
     const handleHashChange = () => {
       const hash = window.location.hash;
       navigate(`/${hash}`);
