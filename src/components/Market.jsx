@@ -39,14 +39,11 @@ export default function Market() {
   }
 
   const scrollMarketTop = () => {
+    const marketElement = document.querySelector("#market");
     window.scrollTo({
-      top: window.pageYOffset - 800,
+      top: marketElement.offsetTop - 100,
       behavior: "smooth",
     });
-  };
-
-  const scrollTop = () => {
-    window.scrollTo({ top: (0, 0), behavior: "smooth" });
   };
 
   return (
@@ -80,7 +77,7 @@ export default function Market() {
                       className="text-slate-100 font-space font-semibold text-2xl flex w-fit items-center py-6 px-4 border-b cursor-pointer hover:bg-[#200840]"
                       key={data.id}
                       to={`/coin/${data.name.toLowerCase()}`}
-                      onClick={scrollTop}
+                      // onClick={scrollTop}
                     >
                       <div className="flex items-center gap-4 w-56 bigTablet:w-[20vw] xl:w-[19rem]">
                         <img src={data.image} className="h-12" alt="" />
