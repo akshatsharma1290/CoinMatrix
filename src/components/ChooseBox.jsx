@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function ChooseBox({ img, title, text }) {
   return (
     <>
@@ -13,3 +15,9 @@ export default function ChooseBox({ img, title, text }) {
     </>
   );
 }
+
+ChooseBox.propTypes = {
+  img: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};

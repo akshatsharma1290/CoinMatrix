@@ -1,4 +1,4 @@
-import BigText from "./BigText";
+import TextWithVisuals from "./TextWithVisuals";
 
 export default function Hero() {
   return (
@@ -9,7 +9,7 @@ export default function Hero() {
       >
         <div className="relative">
           <h1>
-            <BigText text1="track and trade" text2="crypto currencies" />
+            <TextWithVisuals text1="track and trade" text2="crypto currencies" />
           </h1>
         </div>
         <a

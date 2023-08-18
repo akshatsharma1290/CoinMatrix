@@ -1,4 +1,4 @@
-import BigText from "./BigText";
+import BigText from "./TextWithVisuals";
 
 export default function JoinUs() {
   return (

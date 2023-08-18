@@ -10,11 +10,14 @@ export default function Home() {
   useEffect(() => {
     // Current hash will be detected and that section container will be selected and get scrolled Into the View.
     const hash = window.location.hash;
-    console.log(hash)
+    console.log(hash);
     if (hash) {
       const targetContainer = document.querySelector(hash);
       if (targetContainer) {
-        targetContainer.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo({
+          top: targetContainer.offsetTop,
+          behavior: "smooth",
+        });
       }
     }
   }, []);
