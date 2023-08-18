@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import Loader from "../assets/Loader.gif";
 
 export default function Coins() {
-  // Getting the CoinName from the URL. 
+  // Getting the CoinName from the URL.
   const { coinid } = useParams();
   const navigate = useNavigate();
   const [coin, setCoin] = useState([]);
@@ -34,35 +34,6 @@ export default function Coins() {
     fetchcoin();
   }, [api, navigate]);
 
-  useEffect(() => {
-    // If User Leaves the page than the user will be redirected to the home page market section preventing the default behaviour.
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      navigate("/#market");
-      return (event.returnValue = "");
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [navigate]);
-
-  useEffect(() => {
-    // If User Click Any Link the Navbar than the user will be redirected to that corresponding section in the home page.
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      navigate(`/${hash}`);
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, [navigate]);
-
   return (
     <>
       <section
@@ -70,7 +41,7 @@ export default function Coins() {
         id="coins"
       >
         <div
-          className="flex flex-col lg:flex-row items-center 
+          className="flex flex-col lg:flex-row items-center
         lg:items-start text-slate-100 "
         >
           {loading && (

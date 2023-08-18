@@ -4,6 +4,7 @@ export default function GetData({ perpage, page }) {
     try {
       const response = await fetch(api);
       if (!response.ok) {
+        console.log(response);
         throw new Error("Error");
       }
       const data = await response.json();

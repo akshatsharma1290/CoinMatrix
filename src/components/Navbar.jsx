@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const menuLinks = [
   { text: "Home", link: "#home" },
@@ -11,6 +11,7 @@ const menuLinks = [
 export default function Navbar() {
   const mobileNav = useRef(null);
   const desktopNav = useRef(null);
+  const location = useLocation();
 
   const handleMenuOpen = () => {
     mobileNav.current.classList.add("!right-0");
@@ -52,20 +53,24 @@ export default function Navbar() {
         >
           COINMATRIX
         </Link>
-        <div
-          className="text-3xl text-slate-100 md:hidden"
-          onClick={handleMenuOpen}
-        >
-          <i className="fa-solid fa-bars-staggered hamburger-menu hover-gradient transition-all"></i>
-        </div>
+        {location.pathname == "/" ? (
+          <div
+            className="text-3xl text-slate-100 md:hidden"
+            onClick={handleMenuOpen}
+          >
+            <i className="fa-solid fa-bars-staggered hamburger-menu hover-gradient transition-all"></i>
+          </div>
+        ) : null}
         <ul className="hidden md:flex font-space font-semibold text-xl gap-8 text-slate-100">
-          {menuLinks.map((item) => (
-            <li key={item.text}>
-              <a href={item.link} className="hover-gradient">
-                {item.text}
-              </a>
-            </li>
-          ))}
+          {location.pathname === "/"
+            ? menuLinks.map((item) => (
+                <li key={item.text}>
+                  <a href={item.link} className="hover-gradient">
+                    {item.text}
+                  </a>
+                </li>
+              ))
+            : null}
         </ul>
         <div className="hidden md:flex gap-3 text-xl ml-12 xl:text-2xl xl:ml-20 text-slate-100">
           <i className="fa-brands fa-twitter cursor-pointer hover-gradient"></i>
@@ -77,13 +82,15 @@ export default function Navbar() {
         ref={mobileNav}
       >
         <ul className="text-center font-space font-bold text-3xl flex flex-col gap-7">
-          {menuLinks.map((item) => (
-            <li key={item.text} onClick={handleMenuClose}>
-              <a href={item.link} className="hover-gradient">
-                {item.text}
-              </a>
-            </li>
-          ))}
+          {location.pathname === "/"
+            ? menuLinks.map((item) => (
+                <li key={item.text} onClick={handleMenuClose}>
+                  <a href={item.link} className="hover-gradient">
+                    {item.text}
+                  </a>
+                </li>
+              ))
+            : null}
         </ul>
         <div
           className="absolute top-6 right-7 text-3xl"
